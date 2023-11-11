@@ -12,6 +12,7 @@ const routes = [
     children: [
       { path: "home", name: "Home", meta: { breadcrumb: "首页" }, component: () => import("../views/Home.vue"),},
       { path: "user", name: "User", meta: { breadcrumb: "用户管理" }, component: () => import("../views/User.vue"),},
+      { path: "person", name: "Person", meta: { breadcrumb: "个人信息" }, component: () => import("../views/Person.vue"),},
     ],
   },
   { path: "/login", name: "login", component: () => import("../views/Login.vue"),},

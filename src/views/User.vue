@@ -21,7 +21,7 @@
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column prop="id" label="ID" width="120"></el-table-column>
+      <el-table-column prop="id" label="ID" width="200"></el-table-column>
       <el-table-column prop="username" label="用户名" width="120"></el-table-column>
       <el-table-column prop="nickname" label="昵称" width="150"></el-table-column>
       <el-table-column prop="phone" label="联系方式" width="200"></el-table-column>
@@ -49,14 +49,14 @@
     </div>
 
     <el-dialog title="用户信息" :visible.sync="dialogFormVisible" width="30%">
-      <el-form label-width="20%">
-        <el-form-item label="用户名:">
+      <el-form label-width="20%" :model="form" :rules="rules" ref="userForm">
+        <el-form-item label="用户名:" prop="username">
           <el-input v-model="form.username" autocomplete="off" style="width: 85%"></el-input>
         </el-form-item>
-        <el-form-item label="昵称:">
+        <el-form-item label="昵称:" prop="nickname">
           <el-input v-model="form.nickname" autocomplete="off" style="width: 85%"></el-input>
         </el-form-item>
-        <el-form-item label="联系方式:">
+        <el-form-item label="联系方式:" prop="phone">
           <el-input v-model="form.phone" autocomplete="off" style="width: 85%"></el-input>
         </el-form-item>
         <el-form-item label="邮箱:">
@@ -92,6 +92,20 @@ export default {
       dialogFormVisible: false,
       form: {},
       multipleSelection: [],
+      rules: {
+        username: [
+          { required: true, message: "请输入用户名", trigger: "blur" },
+          { min: 3, max: 10, message: "长度在 3 到 5 个字符", trigger: "blur" },
+        ],
+        nickname: [
+          { required: true, message: "请输入昵称", trigger: "blur" },
+          { min: 3, max: 10, message: "长度在 3 到 10 个字符", trigger: "blur" },
+        ],
+        phone: [
+          { required: true, message: "请输入联系方式", trigger: "blur" },
+          { min: 11, max: 11, message: "联系方式为11位", trigger: "blur"},
+        ],
+      },
     }
   },
   created() {
